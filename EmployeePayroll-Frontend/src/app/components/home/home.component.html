@@ -1,0 +1,48 @@
+
+<app-header></app-header>
+
+<div class="main-content">
+  <div class="header-content">
+    <span class="emp-detail-text">
+      Employee Details
+    </span>
+
+    <span class="search-add">
+      <a class="add-button" routerLink="/add"><mat-icon>add</mat-icon> Add User</a>
+    </span>
+  </div>
+
+  <div class="table-main">
+
+    <table id="table-display" class="table">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Start Date</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr *ngFor="let emp of employeeDetails">
+        <td><img class="profile" src="{{emp.profilePic}}" alt=""></td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.gender }}</td>
+        <td>
+          <div class="dept-label" *ngFor="let department of emp.departments">
+            {{department}}
+          </div>
+        </td>
+        <td>{{ emp.salary | currency:'₹ ' }}</td>
+        <td>{{ emp.startDate | date:"dd MMM yyy" }}</td>
+        <td>
+          <mat-icon style="cursor : pointer" id="{{emp.employeeId}}" (click)= "remove(emp.employeeId)">delete</mat-icon>
+          <mat-icon style="margin-left: 10px; cursor : pointer">edit</mat-icon>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+

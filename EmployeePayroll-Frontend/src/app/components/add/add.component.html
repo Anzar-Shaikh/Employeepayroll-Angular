@@ -1,0 +1,104 @@
+<app-header xmlns="http://www.w3.org/1999/html"></app-header>
+
+<div id="formId" class="form-content">
+  <form class="form"  (ngSubmit)="onSubmit()">
+    <div class="form-head">Employee Payroll form</div>
+    <div class="row-content" >
+      <label class="label text required" for="name">Name</label>
+      <input class="input" type="text" id="name"  name="name"  [(ngModel)]="employee.name" placeholder="Your name.." required><br/>
+      <mat-error *ngIf="checkError('name', 'pattern')">Name should start with capital latter and have minimum of 3 character</mat-error>
+    </div><br>
+
+    <div class="row-content">
+      <label class="label text required"  >Profile image</label>
+      <div class="profile-radio-content">
+        <label>
+          <input type="radio"  name="profile" [(ngModel)]= "employee.profilePic" value="../../../assets/profile-image/Ellipse%20-1.png">
+          <img class="profile"  src="../../../assets/profile-image/Ellipse%20-1.png">
+        </label>
+        <label style="margin-left: 20px;">
+          <input type="radio"  name="profile" [(ngModel)]= "employee.profilePic" value="../../../assets/profile-image/Ellipse%20-2.png">
+          <img class="profile"  src="../../../assets/profile-image/Ellipse%20-2.png">
+        </label>
+        <label style="margin-left: 20px;">
+          <input type="radio"  name="profile" [(ngModel)]= "employee.profilePic" value="../../../assets/profile-image/Ellipse%20-3.png">
+          <img class="profile"  src="../../../assets/profile-image/Ellipse%20-3.png">
+        </label>
+        <label style="margin-left: 20px;">
+          <input type="radio"  name="profile" [(ngModel)]= "employee.profilePic" value="../../../assets/profile-image/Ellipse%20-4.png">
+          <img class="profile"  src="../../../assets/profile-image/Ellipse%20-4.png">
+        </label>
+      </div>
+    </div><br>
+    <div class="row-content">
+      <label class="label text required" >Gender</label>
+      <div>
+        <input type="radio" id="male" name="gender" [(ngModel)]= "employee.gender" value="male">
+        <label class="text" for="male">male</label>
+        <input type="radio" id="female" name="gender" [(ngModel)]= "employee.gender" value="female" style="margin-left: 30px;">
+        <label class="text" for="female">female</label>
+      </div>
+    </div><br>
+    <div class="row-content">
+      <label class="label text required"  >Department</label>
+      <div>
+        <section  [formGroup]="formGroupDepartments">
+          <mat-checkbox color="primary" formControlName="HR">HR</mat-checkbox>
+          <mat-checkbox class="checkbox" color="primary" formControlName="Sales" style="margin-left: 30px;">Sales</mat-checkbox>
+          <mat-checkbox class="checkbox" color="primary" formControlName="Finance" style="margin-left: 30px;">Finance</mat-checkbox>
+          <mat-checkbox class="checkbox" color="primary" formControlName="Engineer" style="margin-left: 30px;">Engineer</mat-checkbox>
+          <mat-checkbox class="checkbox" color="primary" formControlName="Other" style="margin-left: 30px;"s>Other</mat-checkbox>
+        </section>
+      </div>
+    </div><br>
+    <div class="row-content">
+      <label class="label text required" >Salary</label>
+      <div>
+        <select  name="salary" [(ngModel)] = "employee.salary" >
+          <option *ngFor="let salary of salaries" [value]="salary">{{salary}}</option>
+        </select>
+      </div>
+    </div><br>
+    <div class="row-content">
+      <label class="label text required" >Start Date</label>
+      <div>
+        <select name="day" [(ngModel)] = "day" >
+          <option *ngFor="let day of daysArray" [value]="day.value" >{{day.key}}</option>
+
+        </select>
+
+
+        <select name="Month" [(ngModel)] ="month"  style="margin-left: 10px;">
+          <option *ngFor="let month of monthArray" [value]="month.value">{{month.key}}</option>
+<!--          <option value="Feb">February</option>-->
+<!--          <option value="Mar">March</option>-->
+<!--          <option value="Apr">April</option>-->
+<!--          <option value="May">May</option>-->
+<!--          <option value="Jun">June</option>-->
+<!--          <option value="Jul">July</option>-->
+<!--          <option value="Aug">August</option>-->
+<!--          <option value="Sep">September</option>-->
+<!--          <option value="Oct">October</option>-->
+<!--          <option value="Nov">November</option>-->
+<!--          <option value="Dec">December</option>-->
+        </select>
+        <select name="Year"  [(ngModel)] ="year" style="margin-left: 10px;">
+          <option *ngFor="let year of yearArray" [value]="year" >{{year}}</option>
+
+        </select>
+
+      </div>
+    </div><br>
+    <div class="row-content">
+      <label class="label text required" >Notes</label>
+      <input class="input" name="note" [(ngModel)]="employee.note"  placeholder="Note..." style="height: 100px">
+    </div><br>
+    <div class="buttonParent ">
+      <button [routerLink]="['']" routerLinkActive="router-link-active" class="btn button text btn-outline-primary">Cancel</button>
+
+      <button style="margin-left: 20%;" type="submit" class="btn button text btn-outline-primary " id="submitButton" >Submit</button>
+      <button type="reset" class="btn button text btn-outline-primary">Reset</button>
+
+    </div>
+  </form>
+</div>
